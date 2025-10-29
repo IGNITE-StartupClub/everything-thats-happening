@@ -8,7 +8,7 @@ load_dotenv()
 # 1. Define the prompt and extraction rules
 prompt = textwrap.dedent(
     """\
-    Extract characters, emotions, and relationships in order of appearance.
+    Extract date, location, time, title, and description of the event.
     Use exact text for extractions. Do not paraphrase or overlap entities.
     Provide meaningful attributes for each entity to add context."""
 )
@@ -16,29 +16,41 @@ prompt = textwrap.dedent(
 # 2. Provide a high-quality example to guide the model
 examples = [
     lx.data.ExampleData(
-        text="ROMEO. But soft! What light through yonder window breaks? It is the east, and Juliet is the sun.",
+        text="04.11. – Holzwerkstatt (WerkStadt Lüneburg, 16:00–20:00 Uhr)\nEinführung in die Kreissäge & Bau einer eigenen Kiste – nur noch wenige Plätze frei.",
         extractions=[
             lx.data.Extraction(
-                extraction_class="character",
-                extraction_text="ROMEO",
-                attributes={"emotional_state": "wonder"},
+                extraction_class="date",
+                extraction_text="04.11.",
+                attributes={"month": 11, "day": 4},
             ),
             lx.data.Extraction(
-                extraction_class="emotion",
-                extraction_text="But soft!",
-                attributes={"feeling": "gentle awe"},
+                extraction_class="location",
+                extraction_text="WerkStadt Lüneburg",
+                attributes={"name": "WerkStadt Lüneburg"},
             ),
             lx.data.Extraction(
-                extraction_class="relationship",
-                extraction_text="Juliet is the sun",
-                attributes={"type": "metaphor"},
+                extraction_class="time",
+                extraction_text="16:00–20:00 Uhr",
+                attributes={"start_time": "16:00", "end_time": "20:00"},
+            ),
+            lx.data.Extraction(
+                extraction_class="title",
+                extraction_text="Holzwerkstatt",
+                attributes={"name": "Holzwerkstatt"},
+            ),
+            lx.data.Extraction(
+                extraction_class="description",
+                extraction_text="Einführung in die Kreissäge & Bau einer eigenen Kiste – nur noch wenige Plätze frei.",
+                attributes={
+                    "description": "Einführung in die Kreissäge & Bau einer eigenen Kiste – nur noch wenige Plätze frei."
+                },
             ),
         ],
     )
 ]
 
 # The input text to be processed
-input_text = "Lady Juliet gazed longingly at the stars, her heart aching for Romeo"
+input_text = "04.12. – Formen gießen (Transformationsräume, 16:00–18:00 Uhr)\nGießen mit Raysin – nur noch wenige Restplätze."
 
 # Run the extraction
 result = lx.extract(
