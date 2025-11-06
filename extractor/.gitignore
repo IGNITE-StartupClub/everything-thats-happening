@@ -1,0 +1,30 @@
+# --- Python basics ---
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments (uv creates .venv by default)
+.venv/
+
+# Local environment variables
+.env
+.env.*
+
+# Distribution / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# UV lock backups (rare but safe to include)
+uv.lock.bak
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
