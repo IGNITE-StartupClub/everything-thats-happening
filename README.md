@@ -1,6 +1,6 @@
 # Universal Event Aggregator
 
-The Universal Event Aggregator is a web-based application creating a federated network of servers which enable the parsing, aggregation and exchange of any type of events.
+The Universal Event Aggregator is a web-based application creating a federated network of servers which enable the parsing, aggregation and exchange of any type of public and private events.
 
 To get started, first run the extractor (based on [LangExtract](https://github.com/google/langextract)), which will launch on [`http://localhost:8000`](http://localhost:8000).
 
